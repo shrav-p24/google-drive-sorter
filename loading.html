@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Sorter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            overflow-x: hidden;
+            overflow-y: hidden
+        }
+        body{
+            background-image: linear-gradient(to right top, #0d1035, #101237, #131438, #15163a, #18183c, #142045, #0c274d, #002f54, #003f5f, #004e64, #005c66, #166a65);
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            text-align: center;
+            padding-top: 100px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .contain{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .loader{
+                border-top: 3px solid #e5007d;
+                border-right: 3px solid#ca2c88;
+                border-bottom: 3px solid #ab3e8f;
+                border-left: 3px solid #874996;
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting your images</h1>
+    <div class="contain">
+    <div class="loader"></div></div>
+    <div class="caption">
+        <p>This might take a while!</p>
+    </div>
+    <script>
+        const formData=localStorage.getItem('formData');
+        if(formData){
+            fetch("/submit",{method: "POST",headers:{"Content-Type":"application/json"},body:formData}).then(res => res.json()).then(data => {localStorage.removeItem('formData'); window.location.href="/success";}).catch(err => {alert("Something went wrong."); console.error(err)});
+        }
+    </script>
+</body>
+</html>

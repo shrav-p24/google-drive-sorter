@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Sorter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+    <h1 style="font-weight: bold;">Sorts images stored in your G Drive into several folders for individual people</h1>
+    </header>
+    <section>
+    <div class="form-container">
+        <form action="submit" method="POST" id="sortForm">
+                <label for="folder">Google Drive Folder Name:</label>
+                <input id='folder' name="folder" placeholder="Folder Name" type="text" required/>
+                <label for="mainphoto">Main Group Photo Name:</label>
+                <input id='mainphoto' name="mainphoto" placeholder="With extension (e.g: .jpg)" type="text" required/>
+                <br><br>
+                <button type="submit">Sort the folder</button>
+        </form>
+    </div>
+    </section>
+    <div class="flowchart">
+        <div class="step">
+      <strong>Step 1:</strong> Ensure the entered folder and image names exist.
+    </div>
+    <div class="step">
+      <strong>Step 2:</strong> Wait while we sort your folder.
+    </div>
+    <div class="step">
+      <strong>Step 3:</strong> All done — your photos are neatly organized!
+    </div>
+    </div>
+    <script>
+  const form = document.getElementById('sortForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const plain = Object.fromEntries(formData.entries());
+    localStorage.setItem('formData', JSON.stringify(plain));
+    window.location.href = "/loading";
+  });
+</script>
+</body>
+</html>
