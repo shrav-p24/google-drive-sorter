@@ -27,34 +27,6 @@ Project Structure
 ├── static/           # CSS files
 └── README.md         # Project documentation
 
-Setup & Installation
-
-Clone the repository
-
-git clone https://github.com/yourusername/google-drive-image-recognizer.git
-cd google-drive-image-recognizer
-
-
-Create a virtual environment & install dependencies
-
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-
-
-Set up Google API credentials
-
-Enable Google Drive API & OAuth 2.0 in Google Cloud Console.
-
-Download credentials.json and place it in the project root.
-
-Run the application
-
-python app.py
-
-
-Visit http://localhost:5000 in your browser.
-
 Future Enhancements
 
 Support for multiple image formats (e.g., HEIC, TIFF).
